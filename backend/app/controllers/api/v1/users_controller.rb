@@ -11,6 +11,7 @@ class Api::V1::UsersController < ApplicationController
 
   def profile
     @user = User.find_by(username: params[:username])
+    render json: @user, status: 200
   end
 
 end
