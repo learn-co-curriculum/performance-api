@@ -29,5 +29,8 @@ module PerformanceApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # by default, Skylight works in production––tell it to listen to production env
+    config.skylight.environments += ["staging"]
   end
 end

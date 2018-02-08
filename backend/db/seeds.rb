@@ -6,11 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-100.times do
-  Movie.create(title: Faker::Coffee.blend_name)
+200.times do
+  Director.create(name: Faker::Fallout.character)
+  Movie.create(title: Faker::Coffee.blend_name, director: Director.order("RANDOM()").first)
 end
 
-500.times do
+2000.times do
   rick_and_morty = User.create(username: Faker::RickAndMorty.character)
   star_wars = User.create(username: Faker::StarWars.character)
   simpsons = User.create(username: Faker::Simpsons.character)

@@ -1,12 +1,13 @@
 class Api::V1::UsersController < ApplicationController
 
   def index
-    @users = User.all.limit(50)
+    @users = User.limit(25)
     render json: @users, status: 200
   end
 
   def show
-    render json: User.find(params[:id]), status: 200
+    @user = User.find(params[:id])
+    render json: @user, status: 200
   end
 
   def profile
