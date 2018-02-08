@@ -10,17 +10,39 @@ class App extends React.Component {
       username: null,
       movies: [],
     },
+    loading: false,
+  };
+
+  startLoading = () => {
+    this.setState({ loading: true });
   };
 
   setCurrentUser = user => {
-    this.setState({ user }, () => console.log(this.state));
-    // this.props.history.push("/profile");
+    this.setState({ user, loading: false });
+    this.props.history.push("/profile");
   };
 
   render() {
     return (
       <div>
-        <LoginForm setCurrentUser={this.setCurrentUser} />
+        <Route
+          exact
+          path="/"
+          render={routerProps => (
+            <LoginForm
+              startLoading={this.startLoading}
+              setCurrentUser={this.setCurrentUser}
+              {...routerProps}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/profile"
+          render={routerProps => (
+            <Profile {...this.state.user} {...routerProps} />
+          )}
+        />
       </div>
     );
   }

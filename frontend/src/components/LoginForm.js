@@ -13,17 +13,17 @@ class LoginForm extends React.Component {
   };
 
   handleSubmit = event => {
-    this.setState({ username: "", loading: true });
+    this.props.startLoading();
+    this.setState({ username: "" });
     //😍 the semantic ui react form component prevents default for me 😍
     Adapter.findUser(this.state.username).then(user => {
       this.props.setCurrentUser(user);
-      this.setState({ loading: false });
     });
   };
 
   render() {
     return (
-      <Form loading={this.state.loading} onSubmit={this.handleSubmit}>
+      <Form loading={this.props.loading} onSubmit={this.handleSubmit}>
         <Form.Input
           onChange={this.handleChange}
           label="Username"
