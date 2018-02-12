@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :movies, only: [:index, :show]
       resources :users, only: [:index, :show]
-      resources :directors
+      post "/profile", to: "users#profile"
     end
   end
 end

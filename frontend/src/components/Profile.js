@@ -5,7 +5,7 @@ import { Card } from "semantic-ui-react";
 const Profile = ({ movies }) => {
   const movieCards = movies.map((movie, idx) => (
     <Card.Content key={idx}>
-      <Card.Header>Director: {movie.director.name}</Card.Header>
+      <Card.Header>Title: {movie.title}</Card.Header>
     </Card.Content>
   ));
   return movies && movies.length ? (
