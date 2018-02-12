@@ -9,7 +9,7 @@ class Api::V1::UsersController < ApplicationController
     # @user = User.find(params[:id])
     # render json: { user: @user, movies: @user.movies }, status: 200
 
-    @user = User.includes(:movies).find(params[:id])
+    @user = User.includes(:movies).find(params[:id]).explain
     render json: @user, status: 200
   end
 
