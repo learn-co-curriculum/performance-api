@@ -16,10 +16,11 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
   if Rails.root.join('tmp/caching-dev.txt').exist?
 
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
-    }
+    config.cache_store = :null_store
+    # config.cache_store = :memory_store
+    # config.public_file_server.headers = {
+    #   'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+    # }
   else
     config.action_controller.perform_caching = false
 
