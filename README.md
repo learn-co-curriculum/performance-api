@@ -9,6 +9,13 @@ render json: @users, status: 200
 
 _For this domain, a user has many movies and a movie has many users. When we request a user object, it also loads that user's movies._
 
+This is similar to running
+
+```ruby
+@users = User.all
+@users.each { |u| u.movies }
+```
+
 The corresponding SQL:
 
 ```sql
@@ -48,7 +55,7 @@ Using includes will significantly cut our SQL queries down:
 ```sql
 SELECT  "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1
 SELECT "user_movies".* FROM "user_movies" WHERE "user_movies"." user_id" = 1
-SELECT "movies".* FROM "movies" WHERE "movies"."id" IN (1, 2, 3, 4, 5, 6, 7)
+SELECT "movies".* FROM "movies" WHERE "movies"."id" IN (1, 2, 3, 4, 5, 6, 7.......)
 ```
 
 Instead of iterating over every single user and finding that object's movies, we can load the data we need ahead of time. In other words, because we know that we'll need the movies associated with a particular user, we can tell ActiveRecord to load the users, load the `user_movies`, and then load associated movies. The total number of queries for this operation has gone from N + 1 to just 3 SQL statements.
