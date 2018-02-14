@@ -113,4 +113,3 @@ In the worst case, we would have to iterate over _all_ the user objects in the d
 We can avoid having to iterate over every user object by indexing the username on the user table: `add_index :users, :username, unique: true`
 
 When accessing a user by id, we don't have to iterate over every user object. This is because ids are indexed. Similarly, we can index usernames on the user model to cut our O(n) to an O(log n) [depending on the implementation details of whichever version of PG you're using](https://dba.stackexchange.com/questions/7375/is-there-any-index-with-o1-complexity-for-lookup-in-postgresql)
-# web-022018
