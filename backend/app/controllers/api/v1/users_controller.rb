@@ -1,8 +1,12 @@
 class Api::V1::UsersController < ApplicationController
 
   def index
+    # no eager loading
     # @users = User.all
+
+    # eager loading:
     @users = User.includes(:movies).all
+
     render json: @users, status: 200
   end
 

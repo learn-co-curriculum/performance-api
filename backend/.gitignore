@@ -15,10 +15,3 @@
 !/tmp/.keep
 
 .byebug_history
-
-#ignore secrets
-/config/secrets.yml
-
-# Ignore application configuration
-/config/application.yml
-/config/skylight.yml
