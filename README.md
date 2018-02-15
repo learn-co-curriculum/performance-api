@@ -37,7 +37,7 @@ d" = $1  [["user_id", 3]]
 ...
 ```
 
-The first query, `SELECT "users".* FROM "users"`, loads all of our user objects. However, we also need to load each users movies. In order to load that data, we have to iterate over every single user object _and_ load that object's movies.
+The first query, `SELECT "users".* FROM "users"`, loads all of our user objects. However, we also need to load each user's movies. In order to load that data, we have to iterate over every single user object _and_ load that object's movies.
 
 ### Enter the N + 1 Problem
 
@@ -45,7 +45,7 @@ Iterating over all the users grows proportionally with the number of user object
 
 ### Enter Eager Loading™️
 
-According to the (rails documentation)[http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations], `Eager loading is the mechanism for loading the associated records of the objects returned by Model.find using as few queries as possible.`
+According to the [rails documentation](http://guides.rubyonrails.org/active_record_querying.html#eager-loading-associations), `Eager loading is the mechanism for loading the associated records of the objects returned by Model.find using as few queries as possible.`
 
 We already know ahead of time that users should be loaded with their movies. This means we can preload all the movies associated with our users while we request our users.
 
