@@ -121,7 +121,7 @@ We can avoid having to iterate over every user object by indexing the username o
 
 ```ruby
 # ... in migration file:
-  `add_index :users, :username, unique: true`
+  add_index :users, :username, unique: true
 ```
 
 When accessing a user by id, we don't have to iterate over every user object. This is because ids are [indexed](https://stackoverflow.com/questions/2955459/what-is-an-index-in-sql); `Indexes are all about finding data quickly. Indexes in a database are analogous to indexes that you find in a book. If a book has an index, and I ask you to find a chapter in that book, you can quickly find that with the help of the index`. Similarly, we can index usernames on the user model to cut our O(n) to an O(log n) [depending on the implementation details of whichever version of PG you're using](https://dba.stackexchange.com/questions/7375/is-there-any-index-with-o1-complexity-for-lookup-in-postgresql).
